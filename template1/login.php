@@ -1,14 +1,12 @@
 <?php 
 require_once ('../incs-template1/config.php');
 include_once ('../incs-template1/cookie-session.php'); 
-?>
-<?php
+
 if(isset($_SESSION['user_id'])){
 	header("Location:./");
 	exit();
 }
-?>
-<?php
+
 $login_array = array();
 if(isset($_POST['login']) AND $_SERVER['REQUEST_METHOD']== "POST" ){
 

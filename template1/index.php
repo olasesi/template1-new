@@ -12,10 +12,7 @@ if(isset($_SESSION['user_id'])){
 <a href=""><button type="button" class="btn btn-secondary btn-lg">Banners</button></a>
 <a href=""><button type="button" class="btn btn-info btn-lg">Product categories</button></a>
 <a href=""><button type="button" class="btn btn-warning btn-lg">Products</button></a>
-
-
-      
-    </div>
+</div>
 </div>';
 
 }
@@ -34,9 +31,7 @@ if(isset($_SESSION['user_id'])){
                     <div class="ps-banner bg--cover" data-background="img/slider/home-1/slide-2.jpg">
                         <a class="ps-banner__overlay" href="shop-default.html"></a>
                     </div>
-                    <div class="ps-banner bg--cover" data-background="img/slider/home-1/slide-3.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
+                   
                 </div>
             </div>
             <div class="ps-section__right">
