@@ -43,7 +43,7 @@ if(empty($login_array)){
 	}
 	
 		 
-		 $_SESSION['user_id'] = $row[0];
+		$_SESSION['user_id'] = $row[0];
 		$_SESSION['email'] = $row[2];
 		 
 		header("Location:./"); exit;

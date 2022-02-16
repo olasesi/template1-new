@@ -9,8 +9,8 @@ if(isset($_COOKIE['remember_me'])){
     if (mysqli_num_rows($decode_cookie) == 1) {
 	
 	$rows_cookie = mysqli_fetch_array($decode_cookie, MYSQLI_NUM);
-	$_SESSION['user_id'] = $row[0];
-    $_SESSION['email'] = $row[2];
+	$_SESSION['user_id'] = $rows_cookie[0];
+    $_SESSION['email'] = $rows_cookie[2];
 	 
 }
 
