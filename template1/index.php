@@ -7,7 +7,7 @@ if(isset($_SESSION['user_id'])){
    echo 
    '<div class="ps-breadcrumb">
 <div class="container">
-
+<a href="promotional-gif.php"><button type="button" class="btn btn-danger btn-lg">Promotional GIF banners</button></a>
 <a href="slider-banners.php"><button type="button" class="btn btn-primary btn-lg">Slider banner</button></a>
 <a href="banners.php"><button type="button" class="btn btn-secondary btn-lg">Banners</button></a>
 <a href="product-categories.php"><button type="button" class="btn btn-info btn-lg">Product categories</button></a>
@@ -23,20 +23,49 @@ if(isset($_SESSION['user_id'])){
     <div class="ps-home-banner ps-home-banner--1">
         <div class="ps-container">
             <div class="ps-section__left">
+            <?php
+if(isset($_SESSION['user_id'])){
+   echo  '<small>slider banners (1230x425)px</small>';
+}
+   ?>
                 <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1"
                     data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on" data-owl-animate-in="fadeIn" data-owl-animate-out="fadeOut">
-                    <div class="ps-banner bg--cover" data-background="img/slider/home-1/slide-1.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
-                    <div class="ps-banner bg--cover" data-background="img/slider/home-1/slide-2.jpg">
-                        <a class="ps-banner__overlay" href="shop-default.html"></a>
-                    </div>
+                   <?php
+                   	$query_slider_banner_select =  mysqli_query($connect, "SELECT slider_banner_image FROM slider_banner ORDER BY slider_id ASC LIMIT 3") or die(db_conn_error);
+
+                   while($looping_slider=mysqli_fetch_array($query_slider_banner_select)){
+            echo ' <div class="ps-banner bg--cover" data-background="images/sliders/'.$looping_slider['slider_banner_image'].'">
+                <a class="ps-banner__overlay" ></a>
+                    </div>';
+
+                   }
+
+                  
+                   ?>
+                   
+                   
                    
                 </div>
             </div>
             <div class="ps-section__right">
-                <a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-1.jpg" alt=""></a>
-                <a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-2.jpg" alt=""></a>
+            <?php
+if(isset($_SESSION['user_id'])){
+   echo  '<small>banner 1 &#38; banner 2 (390x193)px</small>';
+}
+   ?>
+
+<?php
+                   	$query_banner_select =  mysqli_query($connect, "SELECT banner_image FROM banner ORDER BY banner_id ASC LIMIT 2") or die(db_conn_error);
+
+                   while($looping_banner=mysqli_fetch_array($query_banner_select)){
+            echo '<a class="ps-collection"><img src="images/banners/'.$looping_banner['banner_image'].'" alt="'.$looping_banner['banner_image'].'"></a>';
+
+                   }
+
+                  
+                   ?>
+               
+               
             </div>
         </div>
     </div>
@@ -1386,5 +1415,8 @@ if(isset($_SESSION['user_id'])){
             </form>
         </div>
     </div> -->
+
+
+   
 </div>
 <?php include ('../incs-template1/footer.php'); ?>

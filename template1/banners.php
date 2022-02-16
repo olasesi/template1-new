@@ -13,8 +13,8 @@ if(!isset($_SESSION['user_id'])){
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
 	 
-    if ($_POST['slider-banner'] == "Choose slider banner") {
-         $errors['choose-slider-banner'] = 'Please select a slider to upload';
+    if ($_POST['slider-banner'] == "Choose banner") {
+         $errors['choose-slider-banner'] = 'Please select a banner to upload';
      } else{
      $slider_banner = $_POST['slider-banner'];
      }
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
              }
              
          }else{
-         $errors['slider_banner'] = 'Please upload slider image';	
+         $errors['slider_banner'] = 'Please upload banner';	
          
          }
     
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
        
          $new_name= (string) sha1($_FILES['slider_banner']['name'] . uniqid('',true));
              $new_name .= ((substr($ext, 0, 1) != '.') ? ".{$ext}" : $ext);
-             $dest = "images/sliders/".$new_name;
+             $dest = "images/banners/".$new_name;
              
              if (move_uploaded_file($_FILES['slider_banner']['tmp_name'], $dest)) {
              
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
              
       
  
- mysqli_query($connect, "UPDATE slider_banner SET slider_banner_image='".$new_name."' WHERE slider_banner_name = '".$slider_banner."'") or die(db_conn_error);
+ mysqli_query($connect, "UPDATE banner SET banner_image='".$new_name."' WHERE banner_name = '".$slider_banner."'") or die(db_conn_error);
              if (mysqli_affected_rows($connect) == 1) {
              
              $_POST = array();		
@@ -183,9 +183,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
                                                 
                                                     
                                                 <?php        
-                        $banner_list = array('Slider banner 1', 'Slider banner 2', 'Slider banner 3');    
+                        $banner_list = array('Banner 1', 'Banner 2', 'Banner 3', 'Banner 4', 'Banner 5', 'Banner 6', 'Banner 7');    
                        
-                        echo '<option value="Choose slider banner">Choose slider banner</option>';
+                        echo '<option value="Choose banner">Choose banner</option>';
                                         
                         if(isset ($_POST['slider-banner'])){
                         foreach ($banner_list as $banner_as){
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['submit'])){
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Upload</label>
-                                                <input class="form-control" type="file" placeholder="Upload slider" name="slider_banner">
+                                                <input class="form-control" type="file" placeholder="Upload banner" name="slider_banner">
                                                 <?php 
                         if (array_key_exists('slider_banner', $errors)) {
 				        echo '<p class="text-danger">'.$errors['slider_banner'].'</p>';}
